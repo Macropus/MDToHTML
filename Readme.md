@@ -1,4 +1,7 @@
-Simple console app which converts Markdown files to HTML using [MarkdownDeep](http://www.toptensoftware.com/markdowndeep)
+Simple console app which converts Markdown files to HTML using:
+
+* [MarkdownDeep](http://www.toptensoftware.com/markdowndeep)
+* [Command Line Parser Library](https://commandline.codeplex.com/)
 
 # Usage
 ## Arguments
@@ -41,4 +44,3 @@ Template.html:
 	    </div>
 	</body>
 	</html>
-	
