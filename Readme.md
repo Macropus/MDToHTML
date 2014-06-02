@@ -2,6 +2,7 @@ Simple console app which converts Markdown files to HTML using:
 
 * [MarkdownDeep](http://www.toptensoftware.com/markdowndeep)
 * [Command Line Parser Library](https://commandline.codeplex.com/)
+* [NLog](http://nlog-project.org/)
 
 # Usage
 ## Arguments
