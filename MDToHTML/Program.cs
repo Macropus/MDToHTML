@@ -54,6 +54,9 @@ namespace MDToHTML
             }
             private string _outputDirectory;
 
+            [Option('t', "template", Required = false, HelpText = "The name of the file to use as a template (Replace '{{CONTENT}}' with parsed output)")]
+            public string Template { get; set; }
+
             [ParserState]
             public IParserState LastParserState { get; set; }
 
@@ -106,7 +109,7 @@ namespace MDToHTML
                         var inputFileString = File.ReadAllText(fileName);
 
                         // Do the processing
-                        var md = new MarkdownDeep.Markdown();
+                        var md = new CustomMarkdown();
                         var outputFileString = md.Transform(inputFileString);
 
                         // Work out the output filename
@@ -116,6 +119,14 @@ namespace MDToHTML
                         if (!string.IsNullOrEmpty(_options.OutputDirectory))
                         {
                             Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), _options.OutputDirectory));
+                        }
+
+                        // Template
+                        // This searches in the temnplate file for the "{{CONTENT}}" token and replaces it with the parsed output
+                        if (_options.Template != string.Empty && File.Exists(_options.Template))
+                        {
+                            var templateString = File.OpenText(_options.Template).ReadToEnd();
+                            outputFileString = templateString.Replace("{{CONTENT}}", outputFileString);
                         }
 
                         // Write the file
